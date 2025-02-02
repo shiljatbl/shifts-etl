@@ -15,7 +15,7 @@ cd shifts-etl
 ### 2. Build and run the Docker container
 
 ```bash
-docker-compose up --build
+docker-compose up -d
 ```
 
 ### 3. Set Up Virtual Environment
