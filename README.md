@@ -41,8 +41,19 @@ Activate the virtual environment:
 pip install -r requirements.txt
 ```
 
+### 5. Setup the Database
 
-### 5. Run the ETL Pipeline
+An instance of pgAdmin is running at http://localhost:5050 configured with following login information:
+
+username: pgadmin@smartcat.io
+password: pgadmin
+
+After you log in, add a new database server. 
+- hostname: postgres
+- username: postgres
+- password: postgres
+
+### 6. Run the ETL Pipeline
 
 ```bash
 python etl/main.py
