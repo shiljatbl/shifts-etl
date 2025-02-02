@@ -48,6 +48,7 @@ pip install -r requirements.txt
 python etl/main.py
 ```
 
+
 # ETL Pipeline Approach
 
 ## Overview
@@ -59,6 +60,7 @@ The ETL (Extract, Transform, Load) pipeline is designed to:
 - Calculate KPIs based on the loaded data and store them in the `kpis` table.
 
 The pipeline is implemented in Python and uses Docker to set up the Shift API and PostgreSQL database locally.
+Database credentials are located in the config.py file.
 
 ---
 
