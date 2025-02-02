@@ -1,24 +1,44 @@
-# Shifts ETL
 
-## Getting Started
+# KPI Calculation and Insertion
 
-Initialize & start shifts API and target Postgres database in the background
-with
+This Python project calculates KPIs related to employee shifts, breaks, and allowances and inserts them into a PostgreSQL database.
+
+## Setup
+
+### 1. Clone the Repository
 
 ```bash
-$ docker-compose up -d
+git clone https://github.com/shiljatbl/shifts-etl.git
+cd shifts-etl
 ```
 
-### Calculated Shift KPIs
+### 2. Set Up Virtual Environment
+
+```bash
+python -m venv venv
+```
+
+Activate the virtual environment:
+
+- On macOS/Linux:
+  ```bash
+  source venv/bin/activate
+  ```
+- On Windows:
+  ```bash
+  .\venv\Scripts\activate
+  ```
+
+### 3. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
 
 
+### 4. Run the ETL Pipeline
 
-| Name                                  | Description                                                            |
-| ------------------------------------- | ---------------------------------------------------------------------- |
-| `mean_break_length_in_minutes`        | Mean shift break time in minutes (`breaks.start` and `breaks.finish`). |
-| `mean_shift_cost`                     | Mean shift cost (`shifts.cost`).                                       |
-| `max_allowance_cost_14d`              | Max allowance cost in the last 14 days (`allowances.cost`).            |
-| `max_break_free_shift_period_in_days` | Longest period in days when consecutive shifts did not have breaks.    |
-| `min_shift_length_in_hours`           | Shortest shift duration (`shift.start` and `shift.finish`).            |
-| `total_number_of_paid_breaks`         | Total number of paid shift breaks (`breaks.is_paid`).                  |
+```bash
+python main.py
+```
 
