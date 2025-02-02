@@ -9,9 +9,11 @@ This Python project calculates KPIs related to employee shifts, breaks, and allo
 
 ```bash
 git clone https://github.com/shiljatbl/shifts-etl.git
+```
+Navigate to the project root folder
+```bash
 cd shifts-etl
 ```
-
 ### 2. Build and run the Docker container
 
 ```bash
