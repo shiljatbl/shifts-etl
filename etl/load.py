@@ -4,9 +4,9 @@ from config import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
 
 
 def connect_to_db():
-    """
-    Establishes a connection to the PostgreSQL database.
-    """
+    
+    # Establishes a connection to the PostgreSQL database.
+    
     try:
         conn = psycopg2.connect(
             dbname=DB_NAME,
@@ -21,9 +21,9 @@ def connect_to_db():
         return None
 
 def insert_shifts(shifts):
-    """
-    Inserts shift data into the `shifts` table, skipping existing records.
-    """
+    
+    #Inserts shift data into the `shifts` table
+    
     conn = connect_to_db()
     if not conn:
         return
@@ -48,9 +48,9 @@ def insert_shifts(shifts):
         conn.close()
 
 def insert_breaks(breaks):
-    """
-    Inserts break data into the `breaks` table, skipping existing records.
-    """
+    
+    # Inserts break data into the `breaks` table
+    
     conn = connect_to_db()
     if not conn:
         return
@@ -75,9 +75,9 @@ def insert_breaks(breaks):
         conn.close()
 
 def insert_allowances(allowances):
-    """
-    Inserts allowance data into the `allowances` table, skipping existing records.
-    """
+    
+    # Inserts allowance data into the `allowances` table.
+    
     conn = connect_to_db()
     if not conn:
         return
@@ -102,9 +102,9 @@ def insert_allowances(allowances):
         conn.close()
 
 def insert_awards(awards):
-    """
-    Inserts award interpretation data into the `award_interpretations` table, skipping existing records.
-    """
+    
+    # Inserts award interpretation data into the `award_interpretations` table
+    
     conn = connect_to_db()
     if not conn:
         return

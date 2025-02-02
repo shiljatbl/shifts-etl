@@ -1,16 +1,16 @@
 from datetime import datetime
 
 def convert_unix_to_timestamp(unix_timestamp_ms):
-    """
-    Converts a Unix timestamp in milliseconds to a PostgreSQL-compatible timestamp.
-    """
+    
+    #Converts a Unix timestamp in milliseconds to a PostgreSQL-compatible timestamp.
+    
     return datetime.utcfromtimestamp(unix_timestamp_ms / 1000).strftime('%Y-%m-%d %H:%M:%S')
 
 def calculate_shift_cost(shifts):
-    """
-    Calculates the total cost for each shift by summing the costs of allowances and award interpretations.
-    Also converts Unix timestamps to PostgreSQL-compatible timestamps.
-    """
+    
+    # Calculates the total cost for each shift by summing the costs of allowances and award interpretations.
+    # Also converts Unix timestamps to PostgreSQL-compatible timestamps.
+    
     for shift in shifts:
         total_cost = (
             sum(a['cost'] for a in shift['allowances']) +
@@ -23,16 +23,16 @@ def calculate_shift_cost(shifts):
     return shifts
 
 def extract_models(shifts):
-    """
-    Extracts nested models (breaks, allowances, and award interpretations) from shifts.
-    Also converts Unix timestamps to PostgreSQL-compatible timestamps.
-    """
+    
+    # Extracts nested models (breaks, allowances, and award interpretations) from shifts.
+    # Also converts Unix timestamps to PostgreSQL-compatible timestamps.
+    
     all_breaks = []
     all_allowances = []
     all_awards = []
     for shift in shifts:
         shift_id = shift['id']
-        # Extract breaks (rename 'paid' to 'is_paid' for database compatibility)
+        # Extract breaks 
         all_breaks.extend([{
             'id': b['id'],
             'shift_id': shift_id,

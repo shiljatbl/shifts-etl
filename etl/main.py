@@ -4,9 +4,9 @@ from load import insert_shifts, insert_breaks, insert_allowances, insert_awards
 from kpis import calculate_and_insert_kpis
 
 def run_etl():
-    """
-    Runs the ETL pipeline.
-    """
+    
+    #Runs the ETL pipeline.
+    
     # Step 1: Extract
     print("Fetching shifts from API...")
     shifts = fetch_shifts()

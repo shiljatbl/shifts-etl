@@ -1,10 +1,10 @@
 import requests
 
 def fetch_shifts(base_url="http://localhost:8000"):
-    """
-    Fetches all shifts from the Shift API.
-    Handles pagination to retrieve all records.
-    """
+    
+    # Fetches all shifts from the Shift API.
+    # Handles pagination to retrieve all records.
+    
     shifts = []
     next_page = "/api/shifts"  # Initial endpoint
     while next_page:
