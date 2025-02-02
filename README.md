@@ -1,7 +1,5 @@
 
-# KPI Calculation and Insertion
-
-This Python project calculates KPIs related to employee shifts, breaks, and allowances and inserts them into a PostgreSQL database.
+# ETL Pipeline
 
 ## Setup
 
