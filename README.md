@@ -12,7 +12,13 @@ git clone https://github.com/shiljatbl/shifts-etl.git
 cd shifts-etl
 ```
 
-### 2. Set Up Virtual Environment
+### 2. Build and run the Docker container
+
+```bash
+docker-compose up --build
+```
+
+### 3. Set Up Virtual Environment
 
 ```bash
 python -m venv venv
@@ -29,16 +35,16 @@ Activate the virtual environment:
   .\venv\Scripts\activate
   ```
 
-### 3. Install Dependencies
+### 4. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
 
-### 4. Run the ETL Pipeline
+### 5. Run the ETL Pipeline
 
 ```bash
-python main.py
+python etl/main.py
 ```
 
