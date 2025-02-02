@@ -4,9 +4,9 @@ from psycopg2 import sql
 from config import DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER
 
 def connect_to_db():
-    """
-    Establishes a connection to the PostgreSQL database.
-    """
+    
+    # Establishes a connection to the PostgreSQL database.
+    
     try:
         conn = psycopg2.connect(
             dbname=DB_NAME,
@@ -21,9 +21,9 @@ def connect_to_db():
         return None
 
 def calculate_and_insert_kpis():
-    """
-    Calculates KPIs and inserts them into the `kpis` table.
-    """
+    
+    # Calculates KPIs and inserts them into the `kpis` table.
+    
     conn = connect_to_db()
     if not conn:
         return
@@ -32,7 +32,7 @@ def calculate_and_insert_kpis():
     try:
         today = datetime.utcnow().date()
 
-        # 1. Mean break length in minutes (removed date filter)
+        # 1. Mean break length in minutes
         cur.execute("""
             INSERT INTO kpis (kpi_name, kpi_date, kpi_value)
             SELECT 'mean_break_length_in_minutes', %s, 
@@ -47,7 +47,7 @@ def calculate_and_insert_kpis():
             SET kpi_value = EXCLUDED.kpi_value;
         """, (today,))
 
-        # 2. Mean shift cost (removed date filter)
+        # 2. Mean shift cost
         cur.execute("""
             INSERT INTO kpis (kpi_name, kpi_date, kpi_value)
             SELECT 'mean_shift_cost', %s, COALESCE(AVG(s.shift_cost), 0)
@@ -57,7 +57,7 @@ def calculate_and_insert_kpis():
             SET kpi_value = EXCLUDED.kpi_value;
         """, (today,))
 
-        # 3. Max allowance cost in the last 14 days (removed specific date filter)
+        # 3. Max allowance cost in the last 14 days
         cur.execute("""
             INSERT INTO kpis (kpi_name, kpi_date, kpi_value)
             SELECT 'max_allowance_cost_14d', %s, COALESCE(MAX(a.allowance_cost), 0)
@@ -68,7 +68,7 @@ def calculate_and_insert_kpis():
             SET kpi_value = EXCLUDED.kpi_value;
         """, (today, today - timedelta(days=14), today))
 
-        # 4. Max break-free shift period in days (removed date filter)
+        # 4. Max break-free shift period in days
         cur.execute("""
             WITH break_free_periods AS (
                 SELECT shift_date::timestamp,  -- Cast to timestamp
@@ -84,7 +84,7 @@ def calculate_and_insert_kpis():
             SET kpi_value = EXCLUDED.kpi_value;
         """, (today,))
 
-        # 5. Min shift length in hours (removed date filter)
+        # 5. Min shift length in hours
         cur.execute("""
             INSERT INTO kpis (kpi_name, kpi_date, kpi_value)
             SELECT 'min_shift_length_in_hours', %s, COALESCE(MIN(EXTRACT(EPOCH FROM (s.shift_finish - s.shift_start)) / 3600), 0)
@@ -94,7 +94,7 @@ def calculate_and_insert_kpis():
             SET kpi_value = EXCLUDED.kpi_value;
         """, (today,))
 
-        # 6. Total number of paid breaks (removed date filter)
+        # 6. Total number of paid breaks
         cur.execute("""
             INSERT INTO kpis (kpi_name, kpi_date, kpi_value)
             SELECT 'total_number_of_paid_breaks', %s, COALESCE(COUNT(*), 0)
